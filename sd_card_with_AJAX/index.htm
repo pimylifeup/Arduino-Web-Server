@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<script>window.setInterval(function(){
+nocache = "&nocache=" + Math.random() * 10;
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+if (this.readyState == 4) {
+if (this.status == 200) {
+if (this.responseText != null) {
+document.getElementById("analoge_data").innerHTML = this.responseText;
+}}}}
+request.open("GET", "ajaxrefresh" + nocache, true);
+request.send(null);
+}, 5000);
+function changeLEDStatus() {
+nocache = "&nocache=" + Math.random() * 10;
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+if (this.readyState == 4) {
+if (this.status == 200) {
+if (this.responseText != null) {
+document.getElementById("led_status").innerHTML = this.responseText;
+}}}}
+request.open("GET", "?ledstatus=1" + nocache, true);
+request.send(null);
+}
+</script></head>
+<h1>Analogue Values</h1><div id="analoge_data">Arduino analog input values loading.....</div>
+<h1>Arduino LED Status</h1>
+<div><span id="led_status">
+Off
+</span> | <button onclick="changeLEDStatus()">Change Status</button> </div>
+</html>
